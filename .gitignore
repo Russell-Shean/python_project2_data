@@ -4,3 +4,6 @@ __pycache__/
 
 # ignore jupyter notebooks data
 .ipynb_checkpoints/
+
+# Ignore HTML files
+*.html
