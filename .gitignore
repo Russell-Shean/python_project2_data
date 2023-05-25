@@ -11,3 +11,5 @@ __pycache__/
 # ignore .cxv files
 *.csv
 
+# ignore large data files
+*.geojson
