@@ -53,7 +53,19 @@ for earthquake in all_earthquakes:
 	latitudes.append(latitude)
 
 
-data = [Scattergeo(lon = longitudes, lat = latitudes)]
+data = [{
+         'type': 'scattergeo',
+         'lon' : longitudes, 
+         'lat' : latitudes,
+         'marker': {
+              'size': [5 * mag for mag in magnitudes]
+         },
+         }]
+
+
+
+
+
 my_layout = Layout(title = "Earthquakes by magnitude")
 
 fig = {'data': data, 'layout': my_layout}
