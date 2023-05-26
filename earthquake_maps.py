@@ -1,8 +1,10 @@
-# earthquake_json_practice
+# earthquake_maps.py
 
-# load external libraries
-import requests
 import json
+from plotly.graph_objs import Scattergeo, Layout
+from plotly import offline
+import requests
+
 
 # define url
 url = "https://raw.githubusercontent.com/ehmatthes/pcc_3e/main/chapter_16/mapping_global_datasets/eq_data/eq_data_1_day_m1.geojson"
@@ -50,6 +52,9 @@ for earthquake in all_earthquakes:
 	longitudes.append(longitude)
 	latitudes.append(latitude)
 
-print(magnitudes[:10])
-print(latitudes[:10])
-print(longitudes[:10])
+
+data = [Scattergeo(lon = longitudes, lat = latitudes)]
+my_layout = Layout(title = "Earthquakes by magnitude")
+
+fig = {'data': data, 'layout': my_layout}
+offline.plot(fig, filename = "global_earthquakes.html")
