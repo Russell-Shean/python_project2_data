@@ -7,11 +7,11 @@ import requests
 
 
 # define url
-url = "https://raw.githubusercontent.com/ehmatthes/pcc_3e/main/chapter_16/mapping_global_datasets/eq_data/eq_data_1_day_m1.geojson"
+url = "https://raw.githubusercontent.com/ehmatthes/pcc_3e/main/chapter_16/mapping_global_datasets/eq_data/eq_data_30_day_m1.geojson"
 
 # define new file name
-file_name = "one_day_earthquaqes.geojson"
-readable_file_name = "readable_earthquakes.geojson"
+file_name = "30_day_earthquaqes.geojson"
+readable_file_name = "readable_30_earthquakes.geojson"
 
 # use the requests package to download the file
 requested_file = requests.get(url, allow_redirects = True)
@@ -42,23 +42,31 @@ print(len(all_earthquakes))
 
 
 
-magnitudes, longitudes, latitudes = [], [], []
+magnitudes, longitudes, latitudes, hover_text = [], [], [], []
 
 for earthquake in all_earthquakes:
 	magnitude = earthquake["properties"]["mag"]
 	longitude = earthquake["geometry"]["coordinates"][0]
 	latitude = earthquake["geometry"]["coordinates"][1]
+	hover_title = earthquake["properties"]['title']
+
 	magnitudes.append(magnitude)
 	longitudes.append(longitude)
 	latitudes.append(latitude)
+	hover_text.append(hover_title)
 
 
 data = [{
          'type': 'scattergeo',
          'lon' : longitudes, 
          'lat' : latitudes,
+         'text': hover_text,
          'marker': {
-              'size': [5 * mag for mag in magnitudes]
+              'size': [7.5 * mag for mag in magnitudes],
+              'color': magnitudes,
+              'colorscale': 'Viridis',
+              'reversescale': True,
+              'colorbar': {'title': 'Magnitude'}
          },
          }]
 
