@@ -18,18 +18,29 @@ response_dictionary = r.json()
 returned_repos = response_dictionary['items']
 
 # pull important results
-repo_names, stars = [], []
+repo_links, stars, labels = [], [], []
 
 for repo in returned_repos:
-	repo_names.append(repo['name'])
+	# repo_names.append(repo['name'])
 	stars.append(repo['stargazers_count'])
+
+	owner = repo['owner']['login']
+	description = repo['description']
+	label = f"{owner}</br>{description}"
+	labels.append(label)
+
+	repo_name = repo['name']
+	repo_url = repo['html_url']
+	repo_link = f"<a href='{repo_url}'>{repo_name}</a>"
+	repo_links.append(repo_link)
 
 
 # make the plotly chart
 data = [{
 	'type':'bar',
-	'x':repo_names,
+	'x':repo_links,
 	'y':stars,
+	'hovertext': labels,
 	'marker': {
 		'color': 'rgb(60, 100, 150)',
 		'line': {'width': 1.5, 'color': 'rgb(25, 25, 25)'}
