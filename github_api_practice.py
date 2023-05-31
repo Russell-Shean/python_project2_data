@@ -39,3 +39,22 @@ for key in sorted(repo_0.keys()):
 
 for i in range(len(repo_dictionaries)):
 	print(f"{repo_dictionaries[i]['name']}: {repo_dictionaries[i]['description']}")
+
+
+print("\nInfo about the first repo!")
+print(f"Name: {repo_0['name']}")
+print(f"Owner: {repo_0['owner']['login']}")
+print(f"Stars: {repo_0['stargazers_count']}")
+print(f"Repository Link: {repo_0['html_url']}")
+print(f"Create Date: {repo_0['created_at']}")
+print(f"Update Date: {repo_0['updated_at']}")
+print(f"Description: {repo_0['description']}")
+
+
+print("\nSummary Info about all the Repos!")
+for repo in repo_dictionaries:
+	print(f"Name: {repo['name']}")
+	print(f"Owner: {repo['owner']['login']}")
+	print(f"Stars: {repo['stargazers_count']}")
+	print(f"Repository Link: {repo['html_url']}")
+	print(f"Description: {repo['description']}\n")
