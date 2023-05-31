@@ -33,15 +33,21 @@ data = [{
 	'marker': {
 		'color': 'rgb(60, 100, 150)',
 		'line': {'width': 1.5, 'color': 'rgb(25, 25, 25)'}
-	}
+	},
+	'opacity': 0.8
 }]
 
 
 
 chart_layout = {
 	'title': "Most starred R repositories on Github",
-	'xaxis': { 'title': 'Repository'},
-	'yaxis': { 'title': 'Number of Stars'}
+	'titlefont': {'color': "purple", 'size': 28},
+	'xaxis': { 'title': 'Repository',
+	           'titlefont':{'size': 24},
+	           'tickfont': {'size': 14, 'color': "green"}},
+	'yaxis': { 'title': 'Number of Stars',
+	           'titlefont': {'size':24},
+	           'tickfont': {'size': 14}}
 }
 
 
